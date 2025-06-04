@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mint OBQ - Obliquitous</title>
+  <script src="https://unpkg.com/@thirdweb-dev/sdk@latest/dist/web/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.6.6/dist/umd/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e2c;
+      color: #e0e0e0;
+      text-align: center;
+      padding: 3rem;
+    }
+    h1 {
+      color: #ffd700;
+    }
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mint OBQ</h1>
+  <p>The meme coin of infinite ambiguity.</p>
+  <button id="connectWallet">Connect Wallet</button>
+  <button id="mintToken">Mint 100 OBQ</button>
+
+  <script type="module">
+    import {{ ThirdwebSDK } from "https://cdn.skypack.dev/@thirdweb-dev/sdk";
+
+    let provider;
+    let signer;
+    let sdk;
+    let token;
+
+    async function init() {{
+      if (!window.ethereum) {{
+        alert("Please install MetaMask.");
+        return;
+      }}
+
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      signer = provider.getSigner();
+
+      sdk = ThirdwebSDK.fromSigner(signer, "base");
+      token = await sdk.getToken("0xC489d5eA1174Bbe4330fd7082779969096403cF2");
+    }}
+
+    document.getElementById("connectWallet").onclick = async () => {{
+      await init();
+      alert("Wallet connected!");
+    }};
+
+    document.getElementById("mintToken").onclick = async () => {{
+      try {{
+        const tx = await token.claim(100); // mint 100 OBQ
+        alert("Mint successful! Transaction hash: " + tx.receipt.transactionHash);
+      }} catch (err) {{
+        console.error(err);
+        alert("Mint failed. See console for details.");
+      }}
+    }};
+  </script>
+</body>
+</html>
