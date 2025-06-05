@@ -6,7 +6,7 @@ Welcome to **Obliquitous Mint** — the official minting portal for the $OBLIQ m
 
 ## 🚀 Live Site
 
-👉 [Mint Now on GitHub Pages](https://your-username.github.io/onliquitous-mint)
+👉 [Mint Now on GitHub Pages](https://chasealias.github.io/onliquitous-mint)
 
 Replace `your-username` with your actual GitHub username.
 
