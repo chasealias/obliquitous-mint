@@ -32,7 +32,8 @@ async function switchNetwork() {
 }
 
 document.getElementById('mintButton').addEventListener('click', async () => {
-  const abi = [
+  const nftContract = new ethers.Contract(MINT_CONTRACT, MINT_ABI, signer);
+const tokenContract = new ethers.Contract(TOKEN_CONTRACT, TOKEN_ABI, provider);
     "function mint() public payable"
   ];
 
