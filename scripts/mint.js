@@ -1,4 +1,10 @@
-import { MINT_CONTRACT, NETWORK } from '../config.js';
+import {
+  MINT_CONTRACT,
+  MINT_ABI,
+  TOKEN_CONTRACT,
+  TOKEN_ABI,
+  NETWORK
+} from '../config.js'; } from '../config.js';
 
 let provider;
 let signer;
